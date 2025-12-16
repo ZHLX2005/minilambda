@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"reflect"
 	"sync"
+
+	"github.com/ZHLX2005/minilambda/core"
 )
 
 // AutoRegisterer 自动注册器
