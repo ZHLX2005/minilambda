@@ -3,13 +3,12 @@ package main
 import (
 	"context"
 	"fmt"
+	"github.com/ZHLX2005/minilambda/core"
+	"github.com/ZHLX2005/minilambda/example"
+	"github.com/ZHLX2005/minilambda/invoker"
+	"github.com/ZHLX2005/minilambda/registry"
 	"log"
 	"time"
-
-	"minilambda/core"
-	"minilambda/example"
-	"minilambda/invoker"
-	"minilambda/registry"
 )
 
 func init() {
@@ -89,8 +88,8 @@ func batchDemo() {
 
 	// 批量调用
 	requests := map[string]int{
-		"math_double":   10,
-		"math_square":   5,
+		"math_double":    10,
+		"math_square":    5,
 		"math_factorial": 4,
 	}
 

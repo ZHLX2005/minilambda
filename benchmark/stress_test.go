@@ -2,13 +2,12 @@ package benchmark
 
 import (
 	"context"
+	"github.com/ZHLX2005/minilambda/invoker"
+	"github.com/ZHLX2005/minilambda/registry"
 	"runtime"
 	"sync"
 	"testing"
 	"time"
-
-	"minilambda/invoker"
-	"minilambda/registry"
 )
 
 // 复杂计算函数用于压力测试

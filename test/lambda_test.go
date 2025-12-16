@@ -3,13 +3,12 @@ package test
 import (
 	"context"
 	"fmt"
+	"github.com/ZHLX2005/minilambda/core"
+	"github.com/ZHLX2005/minilambda/invoker"
+	"github.com/ZHLX2005/minilambda/registry"
 	"strings"
 	"testing"
 	"time"
-
-	"minilambda/core"
-	"minilambda/invoker"
-	"minilambda/registry"
 )
 
 // Person 和 PersonGreeting 类型定义

@@ -3,13 +3,10 @@ package benchmark
 import (
 	"context"
 	"fmt"
+	"github.com/ZHLX2005/minilambda/registry"
 	"runtime"
 	"sync"
 	"testing"
-
-	"minilambda/core"
-	"minilambda/invoker"
-	"minilambda/registry"
 )
 
 // 基准测试用的简单函数

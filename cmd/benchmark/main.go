@@ -2,8 +2,7 @@ package main
 
 import (
 	"fmt"
-
-	"minilambda/benchmark"
+	"github.com/ZHLX2005/minilambda/benchmark"
 )
 
 func main() {

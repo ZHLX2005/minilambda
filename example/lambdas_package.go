@@ -3,12 +3,11 @@ package example
 import (
 	"context"
 	"fmt"
+	"github.com/ZHLX2005/minilambda/core"
+	"github.com/ZHLX2005/minilambda/registry"
 	"strconv"
 	"strings"
 	"time"
-
-	"minilambda/core"
-	"minilambda/registry"
 )
 
 // RegisterExampleLambdas 注册示例lambda函数

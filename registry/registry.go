@@ -2,10 +2,9 @@ package registry
 
 import (
 	"fmt"
+	"github.com/ZHLX2005/minilambda/core"
 	"reflect"
 	"sync"
-
-	"minilambda/core"
 )
 
 // GlobalRegistry 全局注册中心

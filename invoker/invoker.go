@@ -3,11 +3,10 @@ package invoker
 import (
 	"context"
 	"fmt"
+	"github.com/ZHLX2005/minilambda/core"
+	"github.com/ZHLX2005/minilambda/registry"
 	"sync"
 	"time"
-
-	"minilambda/core"
-	"minilambda/registry"
 )
 
 // Invoker lambda调用器

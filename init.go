@@ -1,7 +1,7 @@
 package minilambda
 
 import (
-	"minilambda/registry"
+	"github.com/ZHLX2005/minilambda/registry"
 )
 
 // Init 初始化minilambda系统

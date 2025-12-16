@@ -5,8 +5,6 @@ import (
 	"fmt"
 	"reflect"
 	"sync"
-
-	"minilambda/core"
 )
 
 // AutoRegisterer 自动注册器
