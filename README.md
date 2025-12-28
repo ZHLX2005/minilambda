@@ -10,6 +10,7 @@
 - **调用器**: 多种调用模式（同步、异步、批量、管道）
 - **指标监控**: 内置调用指标收集
 - **选项配置**: 丰富的配置选项（超时、重试、并发控制等）
+- **🆕 中间件系统**: 类似Gin的责任链模式，支持灵活的中间件组合
 
 ## 快速开始
 
@@ -78,6 +79,31 @@ func main() {
     minilambda.Init() // 执行所有自动注册
 }
 ```
+
+### 4. 🆕 中间件系统
+
+```go
+// 创建带中间件的 Lambda（类似 Gin 的责任链）
+lambda := core.NewLambdaWithMiddleware(
+    "order_processor",
+    processOrder,  // 处理函数
+    core.Logger[Request, Response]("OrderProcessor"),
+    core.Recovery[Request, Response](),
+    core.Timeout[Request, Response](30*time.Second),
+    core.Retry[Request, Response](3),
+)
+
+// 调用
+result, err := lambda.Invoke(ctx, orderRequest)
+
+// 动态添加中间件
+lambdaWithAuth := lambda.Use(
+    AuthMiddleware("admin"),
+    core.RateLimit[Request, Response](limiter),
+)
+```
+
+详细的中间件文档请查看 [MIDDLEWARE.md](MIDDLEWARE.md)
 
 ## 核心组件
 
@@ -168,18 +194,20 @@ fmt.Printf("Average duration: %v\n", metrics.AverageDuration)
 
 ```
 minilambda/
-├── core/           # 核心类型定义
-│   ├── types.go    # Lambda核心类型
-│   └── lambda.go   # Lambda实现
-├── registry/       # 注册中心
-│   ├── registry.go # 注册中心实现
+├── core/              # 核心类型定义
+│   ├── types.go       # Lambda核心类型
+│   ├── lambda.go      # Lambda实现
+│   └── middleware.go  # 🆕 中间件系统
+├── registry/          # 注册中心
+│   ├── registry.go    # 注册中心实现
 │   └── auto_register.go # 自动注册
-├── invoker/        # 调用器
-│   └── invoker.go  # 调用器实现
-├── example/        # 示例代码
-│   ├── lambdas.go  # 示例lambda函数
-│   └── demo.go     # 演示程序
-├── test/          # 测试代码
+├── invoker/           # 调用器
+│   └── invoker.go     # 调用器实现
+├── example/           # 示例代码
+│   ├── lambdas.go     # 示例lambda函数
+│   ├── demo.go        # 演示程序
+│   └── middleware_demo.go # 🆕 中间件演示
+├── test/             # 测试代码
 │   └── lambda_test.go
 ├── init.go        # 包初始化
 ├── go.mod
@@ -189,8 +217,11 @@ minilambda/
 ## 运行示例
 
 ```bash
-# 运行演示程序
+# 运行基本演示程序
 go run minilambda/example/demo.go
+
+# 运行中间件演示程序（推荐）
+go run minilambda/example/middleware_demo.go
 
 # 运行测试
 go test ./minilambda/test/...
